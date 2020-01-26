@@ -29,49 +29,49 @@ class Scoreboard extends Component {
     })
   }
 
-  handleSave = () => {
-    this.props.handleSaveValue(this.state.leftScore, this.state.rightScore)
+  handleGetData = (leftScore, rightScore) => () => {
+    this.props.handleGetScoreboardValue(leftScore, rightScore)
   }
-
 
   render() {
 
-    const { handleDecreaseScoreLeft, handleDecreaseScoreRight, handleIncreaseScoreLeft, handleIncreaseScoreRight, handleSave ,state: { rightScore, leftScore }} = this
+    const { handleDecreaseScoreLeft, handleDecreaseScoreRight, handleIncreaseScoreLeft, handleIncreaseScoreRight, handleGetData, state: { rightScore, leftScore }, props: { handleResetBoard } } = this
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className="card border-success mb-3" style={{ maxWidth: '18rem' }}>
-            <div className="card-header bg-transparent border-success" style={{ textAlign: 'center' }}>Scoreboard</div>
-            <div className="card-body text-success">
-              <div className='row'>
-                <div className='card col'>
-                  <h5 style={{ textAlign: 'center' }}>{leftScore}</h5>
-                </div>
-                <div className='card col'>
-                  <h5 style={{ textAlign: 'center' }}>{rightScore}</h5>
-                </div>
+      <div className='row'>
+        <div className="card border-success mb-3" style={{ maxWidth: '18rem' }}>
+          <div className="card-header bg-transparent border-success" style={{ textAlign: 'center' }}>Scoreboard</div>
+          <div className="card-body text-success">
+            <div className='row'>
+              <div className='card col'>
+                <h5 style={{ textAlign: 'center' }}>{leftScore}</h5>
+              </div>
+              <div className='card col'>
+                <h5 style={{ textAlign: 'center' }}>{rightScore}</h5>
               </div>
             </div>
-            <div className="card-footer bg-transparent border-success">
-              <div className='row'>
-                <div className='card col'>
-                  <div className='row' style={{ alignItems: 'center' }}>
-                    <button onClick={handleIncreaseScoreLeft} className='btn btn-warning col'>up</button>
-                    <button onClick={handleDecreaseScoreLeft} className='btn btn-primary col'>down</button>
-                  </div>
-                </div>
-                <div className='card col'>
-                  <div className='row' style={{ alignItems: 'center' }}>
-                    <button onClick={handleIncreaseScoreRight} className='btn btn-warning col'>up</button>
-                    <button onClick={handleDecreaseScoreRight} className='btn btn-primary col'>down</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button className='btn btn-danger' onClick={handleSave}>
-              save Scoreboard
-        </button>
           </div>
+          <div className="card-footer bg-transparent border-success">
+            <div className='row'>
+              <div className='card col'>
+                <div className='row' style={{ alignItems: 'center' }}>
+                  <button onClick={handleIncreaseScoreLeft} className='btn btn-warning col'>up</button>
+                  <button onClick={handleDecreaseScoreLeft} className='btn btn-primary col'>down</button>
+                </div>
+              </div>
+              <div className='card col'>
+                <div className='row' style={{ alignItems: 'center' }}>
+                  <button onClick={handleIncreaseScoreRight} className='btn btn-warning col'>up</button>
+                  <button onClick={handleDecreaseScoreRight} className='btn btn-primary col'>down</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button className='btn btn-primary' onClick={handleGetData(leftScore, rightScore)} >
+            Save Scoreboard
+        </button>
+          <button className='btn btn-danger' onClick={handleResetBoard(leftScore, rightScore)} >
+            Reset Scoreboard
+        </button>
         </div>
       </div>
     );
