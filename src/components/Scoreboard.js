@@ -29,17 +29,14 @@ class Scoreboard extends Component {
     })
   }
 
-  handleReset = () => {
-    this.setState({
-        rightScore: 0,
-        leftScore: 0
-      })
+  handleSave = () => {
+    this.props.handleSaveValue(this.state.leftScore, this.state.rightScore)
   }
 
 
   render() {
 
-    const { handleDecreaseScoreLeft, handleDecreaseScoreRight, handleIncreaseScoreLeft, handleIncreaseScoreRight, handleReset ,state: { rightScore, leftScore }} = this
+    const { handleDecreaseScoreLeft, handleDecreaseScoreRight, handleIncreaseScoreLeft, handleIncreaseScoreRight, handleSave ,state: { rightScore, leftScore }} = this
     return (
       <div className='container'>
         <div className='row'>
@@ -71,8 +68,8 @@ class Scoreboard extends Component {
                 </div>
               </div>
             </div>
-            <button className='btn btn-danger' onClick={handleReset}>
-              Reset Scoreboard
+            <button className='btn btn-danger' onClick={handleSave}>
+              save Scoreboard
         </button>
           </div>
         </div>
