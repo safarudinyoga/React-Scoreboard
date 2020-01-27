@@ -18,9 +18,8 @@ class App extends Component {
     }
   }
 
-  handleResetBoard = (leftScore, rightScore) => () => {
+  handleResetBoard = () => {
     console.log('mashok')
-    // console.log(leftScore, rightScore);
     this.setState({
       defaultBoard1: {
         defaultValueLeft: 0,
@@ -37,6 +36,7 @@ class App extends Component {
     })
   }
 
+  // HOC for return function
   handleGetScoreboardValue = (leftScore, rightScore) => () => {
     console.log(leftScore, rightScore);
     return (
@@ -50,7 +50,7 @@ class App extends Component {
 
   render() {
 
-    const { state: { defaultBoard1, defaultBoard2, defaultBoard3}, handleResetBoard, handleGetScoreboardValue } = this
+    const { state: { defaultBoard1, defaultBoard2, defaultBoard3 }, handleResetBoard, handleGetScoreboardValue } = this
 
     return (
       <div className='container'>
@@ -76,6 +76,12 @@ class App extends Component {
             />
           </div>
         </div>
+        <button className='btn btn-primary' onClick={ handleGetScoreboardValue()}>
+          Save Scoreboard
+      </button>
+        <button className='btn btn-danger' onClick={() => handleResetBoard()}>
+          Reset Scoreboard
+      </button>
       </div>
     );
   }

@@ -7,6 +7,11 @@ class Scoreboard extends Component {
     leftScore: this.props.defaultValueLeft
   }
 
+  // did mount trigger the call value
+  componentDidMount() {
+    this.props.handleGetScoreboardValue(this.state.rightScore, this.state.rightScore)
+  }
+
   // Method Map can be Applied to
   handleIncreaseScoreRight = () => {
     this.setState({
@@ -35,7 +40,8 @@ class Scoreboard extends Component {
 
   render() {
 
-    const { handleDecreaseScoreLeft, handleDecreaseScoreRight, handleIncreaseScoreLeft, handleIncreaseScoreRight, handleGetData, state: { rightScore, leftScore }, props: { handleResetBoard } } = this
+    const { handleDecreaseScoreLeft, handleDecreaseScoreRight, handleIncreaseScoreLeft, handleIncreaseScoreRight, state: { rightScore, leftScore } } = this
+
     return (
       <div className='row'>
         <div className="card border-success mb-3" style={{ maxWidth: '18rem' }}>
@@ -66,12 +72,12 @@ class Scoreboard extends Component {
               </div>
             </div>
           </div>
-          <button className='btn btn-primary' onClick={handleGetData(leftScore, rightScore)} >
+          {/* <button className='btn btn-primary' onClick={handleGetData(leftScore, rightScore)} >
             Save Scoreboard
         </button>
           <button className='btn btn-danger' onClick={handleResetBoard(leftScore, rightScore)} >
             Reset Scoreboard
-        </button>
+        </button> */}
         </div>
       </div>
     );
